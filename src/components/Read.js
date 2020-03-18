@@ -8,11 +8,14 @@ class Read extends React.Component {
       <div>
         <h1>Read</h1>
         <ol>
-          {booksList.map(book => (
-            <li key={book.id}>
-              <BookCard eachBook={book} />
-            </li>
-          ))}
+          {booksList.map(
+            book =>
+              book.shelf === "read" && (
+                <li key={book.id}>
+                  <BookCard eachBook={book} />
+                </li>
+              )
+          )}
         </ol>
       </div>
     );
