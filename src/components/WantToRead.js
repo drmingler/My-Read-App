@@ -3,7 +3,7 @@ import BookCard from "./BookCard";
 
 class WantToRead extends React.Component {
   render() {
-    const { booksList } = this.props;
+    const { booksList, update } = this.props;
     return (
       <div>
         <h1>Want To Read</h1>
@@ -12,7 +12,7 @@ class WantToRead extends React.Component {
             book =>
               book.shelf === "wantToRead" && (
                 <li key={book.id}>
-                  <BookCard eachBook={book} />
+                  <BookCard eachBook={book} update={update}/>
                 </li>
               )
           )}

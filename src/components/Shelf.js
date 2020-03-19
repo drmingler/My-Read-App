@@ -5,12 +5,12 @@ import CurrentlyReading from "./CurrentlyReading";
 
 class Shelf extends React.Component{
     render() {
-        const {books} = this.props;
+        const {books, update} = this.props;
         return (
             <div>
-                <Read booksList={books}/>
-                <CurrentlyReading booksList={books}/>
-                <WantToRead booksList={books}/>
+                <Read update={update} booksList={books}/>
+                <CurrentlyReading update={update} booksList={books}/>
+                <WantToRead update={update} booksList={books}/>
             </div>
         )
     }
