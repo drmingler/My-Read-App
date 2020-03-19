@@ -14,7 +14,7 @@ class BookCard extends React.Component {
         </div>
         <div>
           <select
-            value={eachBook.shelf}
+            value={eachBook.shelf ? eachBook.shelf : "none"}
             onChange={e => update(eachBook, e.target.value)}
           >
             <option value="read">Read</option>
