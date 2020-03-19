@@ -9,7 +9,7 @@ class BookCard extends React.Component {
         <div>
           <p>The Image Will Come Here</p>
           <p>{eachBook.id}</p>
-          <span>{eachBook.title}</span>
+          <h1 >{eachBook.title}</h1>
           <span>{eachBook.shelf}</span>
         </div>
         <div>
@@ -20,6 +20,7 @@ class BookCard extends React.Component {
             <option value="read">Read</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want To Read</option>
+            <option value="none">None</option>
           </select>
         </div>
       </div>

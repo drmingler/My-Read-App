@@ -9,7 +9,6 @@ class Search extends React.Component {
   fetchBooks = () => {
     const { query } = this.state;
     this.props.searchBooks(query.trim());
-
   };
   handleChange = query => {
     this.setState(
