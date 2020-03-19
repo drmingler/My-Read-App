@@ -1,7 +1,9 @@
 import React from "react";
 import "../App.css";
 import * as BooksApis from "../utils/BooksAPI";
+import Search from "./Search";
 import Shelf from "./Shelf";
+//import Shelf from "./Shelf";
 
 class App extends React.Component {
   state = {
@@ -10,18 +12,13 @@ class App extends React.Component {
     //<Shelf update={this.updateBook} books={this.state.books} />
   };
   componentDidMount() {
-    // BooksApis.update({id:"jAUODAAAQBAJ"},"read").then((data)=>(console.log(data.shelf)));
-    // BooksApis.search("Fitness").then(data => {
-    //   console.log(data);
-    // });
-    // BooksApis.get("tsRhkvo80iUC").then(data => console.log(data));
     BooksApis.getAll().then(data => {
       this.setState(() => ({
         books: data
       }));
     });
   }
-  
+
   updateBook = (book, shelf) => {
     BooksApis.update(book, shelf).then(() => {
       book.shelf = shelf;
@@ -41,13 +38,20 @@ class App extends React.Component {
       }));
     }
     // Otherwise fetch the result from the server
-
     BooksApis.search(query).then(data => {
-      this.setState(() => ({
-        search: !data || data.error ? [] : data
-      }));
-    });
-  };
+      const searchResult = !data || data.error ? [] : data;
+      this.setState((prevState)=>({
+        search: searchResult.map(eachBookInSearch => {
+        const matchingBook = prevState.books.filter(
+          book => eachBookInSearch.id === book.id
+        );
+          eachBookInSearch.shelf = matchingBook.length > 0 ? matchingBook[0].shelf: "none";
+          return eachBookInSearch
+        })
+      }))
+    })
+  }
+
 
   render() {
     console.log("Search ", this.state.search);
@@ -66,3 +70,4 @@ export default App;
 //     queryList={this.state.search}
 //     searchBooks={this.searchBooks}
 // />
+// <Shelf update={this.updateBook} books={this.state.books} />
