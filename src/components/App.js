@@ -10,10 +10,10 @@ class App extends React.Component {
   state = {
     books: [],
     search: []
-    //<Shelf update={this.updateBook} books={this.state.books} />
   };
   componentDidMount() {
     BooksApis.getAll().then(data => {
+      console.log(data)
       this.setState(() => ({
         books: data
       }));
@@ -58,10 +58,7 @@ class App extends React.Component {
     console.log("Search ", this.state.search);
     console.log("Books", this.state.books);
     return (
-      <div className={"list-books"}>
-        <div className="list-books-title">
-          <h1>MyReads</h1>
-        </div>
+      <div>
         <Route
           exact
           path={"/"}
@@ -87,9 +84,4 @@ class App extends React.Component {
 }
 
 export default App;
-// <Search
-//     update={this.updateBook}
-//     queryList={this.state.search}
-//     searchBooks={this.searchBooks}
-// />
-// <Shelf update={this.updateBook} books={this.state.books} />
+
