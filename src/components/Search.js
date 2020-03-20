@@ -1,5 +1,6 @@
 import React from "react";
 import BookCard from "./BookCard";
+import {Link} from "react-router-dom";
 
 class Search extends React.Component {
   state = {
@@ -31,6 +32,11 @@ class Search extends React.Component {
             onChange={event => this.handleChange(event.target.value)}
           />
           {JSON.stringify(this.state.query)}
+          <div>
+            <Link to={'/'}>
+              To Home
+            </Link>
+          </div>
         </div>
         <div>
           <ol>
