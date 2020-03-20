@@ -17,6 +17,7 @@ class BookCard extends React.Component {
             value={eachBook.shelf ? eachBook.shelf : "none"}
             onChange={e => update(eachBook, e.target.value)}
           >
+            <option value="move" disabled>Move to...</option>
             <option value="read">Read</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want To Read</option>

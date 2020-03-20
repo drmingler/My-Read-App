@@ -11,6 +11,9 @@ class Shelf extends React.Component{
                 <Read update={update} booksList={books}/>
                 <CurrentlyReading update={update} booksList={books}/>
                 <WantToRead update={update} booksList={books}/>
+                <div>
+                    <button>To Search Page</button>
+                </div>
             </div>
 
         )
