@@ -4,6 +4,7 @@ import * as BooksApis from "../utils/BooksAPI";
 import Search from "./Search";
 import Shelf from "./Shelf";
 import { Route } from "react-router-dom";
+import Style from "./styling";
 
 class App extends React.Component {
   state = {
@@ -57,7 +58,10 @@ class App extends React.Component {
     console.log("Search ", this.state.search);
     console.log("Books", this.state.books);
     return (
-      <div>
+      <div className={"list-books"}>
+        <div className="list-books-title">
+          <h1>MyReads</h1>
+        </div>
         <Route
           exact
           path={"/"}
@@ -76,6 +80,7 @@ class App extends React.Component {
             />
           )}
         />
+        <Route path={'/style'} component={Style}/>
       </div>
     );
   }
