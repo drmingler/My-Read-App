@@ -13,9 +13,8 @@ class App extends React.Component {
   };
   componentDidMount() {
     BooksApis.getAll().then(data => {
-      console.log(data)
       this.setState(() => ({
-        books: data
+        books: data,
       }));
     });
   }
@@ -32,26 +31,29 @@ class App extends React.Component {
   };
 
   searchBooks = query => {
+    console.log(query);
     // If the search query is empty set the search state to an empty array
     if (!query) {
-      return this.setState(() => ({
+     this.setState(() => ({
         search: []
       }));
     }
     // Otherwise fetch the result from the server
-    BooksApis.search(query).then(data => {
-      const searchResult = !data || data.error ? [] : data;
-      this.setState(prevState => ({
-        search: searchResult.map(eachBookInSearch => {
-          const matchingBook = prevState.books.filter(
-            book => eachBookInSearch.id === book.id
-          );
-          eachBookInSearch.shelf =
-            matchingBook.length > 0 ? matchingBook[0].shelf : "none";
-          return eachBookInSearch;
-        })
-      }));
-    });
+    else{
+      BooksApis.search(query).then(data => {
+        const searchResult = !data || data.error ? [] : data;
+        this.setState(prevState => ({
+          search: searchResult.map(eachBookInSearch => {
+            const matchingBook = prevState.books.filter(
+                book => eachBookInSearch.id === book.id
+            );
+            eachBookInSearch.shelf =
+                matchingBook.length > 0 ? matchingBook[0].shelf : "none";
+            return eachBookInSearch;
+          })
+        }));
+      });
+    }
   };
 
   render() {
@@ -73,7 +75,7 @@ class App extends React.Component {
             <Search
               update={this.updateBook}
               queryList={this.state.search}
-              searchBooks={this.searchBooks}
+              onSearch={this.searchBooks}
             />
           )}
         />

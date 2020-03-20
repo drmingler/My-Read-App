@@ -7,9 +7,13 @@ class Search extends React.Component {
     query: ""
   };
 
+  componentDidMount() {
+    this.handleChange('')
+  }
+
   fetchBooks = () => {
     const { query } = this.state;
-    this.props.searchBooks(query.trim());
+    this.props.onSearch(query.trim());
   };
   handleChange = query => {
     this.setState(
@@ -19,13 +23,15 @@ class Search extends React.Component {
       () => this.fetchBooks()
     );
   };
+
   render() {
     const { query } = this.state;
     const { queryList, update } = this.props;
     return (
       <div className={"search-books"}>
         <div className={"search-books-bar"}>
-          <Link className={"close-search"} to={"/"}>
+          <Link className={"close-search"} to={"/"}
+          >
             To Home Close
           </Link>
           <div className="search-books-input-wrapper">
@@ -39,11 +45,11 @@ class Search extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {queryList.map(book => (
+            {query && (queryList.map(book => (
               <li key={book.id}>
                 <BookCard update={update} eachBook={book} />
               </li>
-            ))}
+            )))}
           </ol>
         </div>
       </div>
