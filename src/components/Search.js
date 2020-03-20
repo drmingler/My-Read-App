@@ -7,10 +7,13 @@ class Search extends React.Component {
     query: ""
   };
 
+  // Reset the query state before rendering the search page
   componentDidMount() {
     this.handleChange('')
   }
 
+ /* The function below passes the search query
+ * in the state to the onSearch prop*/
   fetchBooks = () => {
     const { query } = this.state;
     this.props.onSearch(query.trim());
@@ -20,13 +23,14 @@ class Search extends React.Component {
       () => ({
         query: query
       }),
+        // Invoke this call back function whenever the state is updated
       () => this.fetchBooks()
     );
   };
 
   render() {
     const { query } = this.state;
-    const { queryList, update } = this.props;
+    const { queryList, updateBook } = this.props;
     return (
       <div className={"search-books"}>
         <div className={"search-books-bar"}>
@@ -47,7 +51,7 @@ class Search extends React.Component {
           <ol className="books-grid">
             {query && (queryList.map(book => (
               <li key={book.id}>
-                <BookCard update={update} eachBook={book} />
+                <BookCard update={updateBook} eachBook={book} />
               </li>
             )))}
           </ol>

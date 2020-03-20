@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 class Shelf extends React.Component {
   render() {
-    const { books, update } = this.props;
+    const { books, updateBook } = this.props;
     return (
       <div className={"list-books"}>
         <div className="list-books-title">
@@ -14,9 +14,9 @@ class Shelf extends React.Component {
         </div>
         <div className={"list-books-content"}>
           <div>
-            <Read update={update} booksList={books} />
-            <CurrentlyReading update={update} booksList={books} />
-            <WantToRead update={update} booksList={books} />
+            <Read update={updateBook} booksList={books} />
+            <CurrentlyReading update={updateBook} booksList={books} />
+            <WantToRead update={updateBook} booksList={books} />
             <div>
               <Link className={"open-search"} to={"/search"}>
                 To Search Page

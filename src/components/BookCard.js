@@ -3,6 +3,7 @@ import React from "react";
 class BookCard extends React.Component {
   render() {
     const { eachBook, update } = this.props;
+    // Check if the image has a thumbnail
     const image = eachBook.imageLinks ? eachBook.imageLinks.thumbnail : null;
     return (
       <div>
